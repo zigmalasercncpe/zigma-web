@@ -319,3 +319,10 @@ body {
   flex-direction: column;
   width: 100%;
 }
+
+/* Placeholder con contraste suficiente (WCAG 4.5:1) */
+.form input::placeholder,
+.form textarea::placeholder {
+  color: #90909c;
+  opacity: 1;
+}
