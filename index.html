@@ -41,7 +41,7 @@
         </div>
       </div>
       <div class="hero-image">
-        <img src="images/logo-zigma.png" alt="Logo Zigma Laser" />
+        <img src="images/logo-hero.png" alt="Logo Zigma Laser" />
       </div>
     </div>
   </section>
@@ -114,7 +114,7 @@
   <section class="section" id="nosotros">
     <div class="container nosotros-inner">
       <div class="nosotros-image">
-        <img src="images/logo-zigma-alterno.png" alt="Zigma Laser" />
+        <img src="images/logo-nosotros.png" alt="Zigma Laser" />
       </div>
       <div class="nosotros-content">
         <h2 class="section-title">¿Quiénes <span class="accent">somos?</span></h2>
@@ -135,16 +135,29 @@
     <div class="container">
       <h2 class="section-title">Solicita tu <span class="accent">Cotización</span></h2>
       <p class="section-subtitle">Cuéntanos tu idea y te respondemos lo más pronto posible.</p>
-      <form class="form" id="contactForm">
+            <form class="form" id="contactForm">
         <div class="form-row">
-          <input type="text" name="nombre" placeholder="Tu nombre" required />
-          <input type="tel" name="telefono" placeholder="Tu WhatsApp" required />
+          <div class="form-field">
+            <label for="nombre" class="sr-only">Tu nombre</label>
+            <input id="nombre" type="text" name="nombre" placeholder="Tu nombre" required />
+          </div>
+          <div class="form-field">
+            <label for="telefono" class="sr-only">Tu WhatsApp</label>
+            <input id="telefono" type="tel" name="telefono" placeholder="Tu WhatsApp" required />
+          </div>
         </div>
         <div class="form-row">
-          <input type="email" name="email" placeholder="Tu correo (opcional)" />
-          <input type="text" name="tipo" placeholder="¿Qué necesitas? (ej: llaveros)" />
+          <div class="form-field">
+            <label for="email" class="sr-only">Tu correo</label>
+            <input id="email" type="email" name="email" placeholder="Tu correo (opcional)" />
+          </div>
+          <div class="form-field">
+            <label for="tipo" class="sr-only">¿Qué necesitas?</label>
+            <input id="tipo" type="text" name="tipo" placeholder="¿Qué necesitas? (ej: llaveros)" />
+          </div>
         </div>
-        <textarea name="mensaje" placeholder="Describe tu pedido o proyecto..." rows="4" required></textarea>
+        <label for="mensaje" class="sr-only">Describe tu pedido o proyecto</label>
+        <textarea id="mensaje" name="mensaje" placeholder="Describe tu pedido o proyecto..." rows="4" required></textarea>
         <button type="submit" class="btn btn-primary btn-block">Enviar cotización</button>
       </form>
       <div class="contact-info">
