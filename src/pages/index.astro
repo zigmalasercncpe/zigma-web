@@ -1,0 +1,42 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import StatsBar from '../components/StatsBar.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import ProductsGallery from '../components/ProductsGallery.astro';
+import ProcessTimeline from '../components/ProcessTimeline.astro';
+import CoursesGrid from '../components/CoursesGrid.astro';
+import MaintenancePlans from '../components/MaintenancePlans.astro';
+import TrustLayer from '../components/TrustLayer.astro';
+import ContactForm from '../components/ContactForm.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import { site } from '../data/content.js';
+
+const title = site.tagline;
+const description = 'Venta de máquinas CNC, mantenimiento, reparación y capacitación con ingeniería de precisión. Respuesta en 24 horas.';
+---
+
+<Layout {title} {description}>
+  <Hero />
+  <StatsBar />
+  <ServicesGrid />
+  <ProductsGallery />
+  <ProcessTimeline />
+  <CoursesGrid />
+  <MaintenancePlans />
+  <TrustLayer />
+  <ContactForm />
+  <CtaBanner />
+</Layout>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+</script>

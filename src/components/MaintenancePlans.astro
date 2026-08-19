@@ -1,0 +1,53 @@
+﻿---
+import { plans } from '../data/content.js';
+import Icon from './Icon.astro';
+import SectionTitle from './SectionTitle.astro';
+---
+
+<section class="relative border-t border-white/5 bg-gunmetal/20 py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-6">
+    <SectionTitle
+      eyebrow="Mantenimiento"
+      title="Planes que protegen su inversión"
+      description="Mantenimiento preventivo, predictivo y correctivo con ingenieros certificados. Reduzca downtime y prolongue la vida útil de su maquinaria."
+      align="center"
+    />
+
+    <div class="mt-16 grid grid-cols-1 gap-6 md:grid-cols-3">
+      {
+        plans.map((plan) => (
+          <div class:list={[
+            'reveal relative flex flex-col border p-8 transition-all duration-500',
+            plan.recommended ? 'border-copper/60 bg-gunmetal shadow-[0_0_80px_rgba(184,115,51,0.15)] md:-mt-4 md:mb-4' : 'border-white/5 bg-gunmetal/40 hover:border-copper/30',
+          ]}>
+            {plan.recommended && (
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-copper px-4 py-1 font-mono text-[10px] tracking-[0.25em] text-forged uppercase">Recomendado</span>
+            )}
+            <h3 class="font-serif text-2xl font-semibold text-coldwhite">{plan.name}</h3>
+            <p class="mt-1 font-mono text-[11px] tracking-[0.2em] text-steelgrey uppercase">{plan.frequency}</p>
+            <div class="mt-6 flex items-baseline gap-2">
+              <span class="font-mono text-4xl font-medium text-copper">{plan.price}</span>
+              <span class="font-mono text-[11px] text-steelgrey">/ mes</span>
+            </div>
+            <ul class="mt-8 flex-1 space-y-3">
+              {plan.features.map((f) => (
+                <li class:list={['flex items-start gap-3 text-sm', f.included ? 'text-steelgrey' : 'text-steelgrey/40 line-through']}>
+                  <span class:list={['mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center', f.included ? 'text-copper' : 'text-steelgrey/40']}>
+                    <Icon name={f.included ? 'check' : 'close'} size={14} />
+                  </span>
+                  {f.text}
+                </li>
+              ))}
+            </ul>
+            <a href="/mantenimiento" class:list={[
+              'mt-8 inline-flex items-center justify-center gap-2 px-6 py-3 font-mono text-[12px] tracking-[0.2em] uppercase transition-all duration-300',
+              plan.recommended ? 'bg-copper text-forged hover:bg-engorange' : 'border border-white/10 text-coldwhite hover:border-copper hover:text-copper',
+            ]}>
+              Elegir plan <Icon name="arrowRight" size={14} />
+            </a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

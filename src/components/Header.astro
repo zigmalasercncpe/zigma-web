@@ -1,0 +1,134 @@
+﻿---
+import { site, nav, hero } from '../data/content.js';
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+
+const { pathname } = Astro.url;
+---
+
+<header id="site-header" class="fixed inset-x-0 top-0 z-50 transition-all duration-300">
+  <!-- Barra superior técnica -->
+  <div class="hidden border-b border-white/5 bg-footer/90 md:block">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-2 font-mono text-[11px] tracking-wider text-steelgrey">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-2"><Icon name="phone" size={12} /> {site.phoneDisplay}</span>
+        <span class="flex items-center gap-2"><Icon name="mail" size={12} /> {site.email}</span>
+      </div>
+      <span class="flex items-center gap-2 text-copper"><Icon name="clock" size={12} /> {site.hours}</span>
+    </div>
+  </div>
+
+  <!-- Barra principal -->
+  <div id="nav-bar" class="border-b border-transparent transition-all duration-300">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4" aria-label="Principal">
+      <Logo />
+
+      <!-- Navegación escritorio -->
+      <ul class="hidden items-center gap-1 lg:flex">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'group relative px-4 py-2 font-mono text-[12px] tracking-[0.15em] uppercase transition-colors duration-200',
+                  pathname === item.href ? 'text-copper' : 'text-steelgrey hover:text-coldwhite',
+                ]}
+              >
+                {item.label}
+                <span class={[
+                  'absolute inset-x-4 -bottom-0.5 h-px bg-copper transition-transform duration-300 origin-left',
+                  pathname === item.href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100',
+                ]}></span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="hidden items-center gap-3 lg:flex">
+        <a
+          href="/contacto"
+          class="group inline-flex items-center gap-2 border border-copper/60 px-5 py-2.5 font-mono text-[12px] tracking-[0.15em] text-coldwhite uppercase transition-all duration-300 hover:bg-copper hover:text-forged"
+        >
+          Cotizar
+          <Icon name="arrowRight" size={14} class="transition-transform duration-300 group-hover:translate-x-1" />
+        </a>
+      </div>
+
+      <!-- Botón móvil -->
+      <button id="menu-toggle" class="flex h-10 w-10 items-center justify-center border border-white/10 text-coldwhite lg:hidden" aria-label="Abrir menú" aria-expanded="false">
+        <Icon name="menu" size={20} id="menu-icon-open" />
+        <Icon name="close" size={20} id="menu-icon-close" class="hidden" />
+      </button>
+    </nav>
+  </div>
+
+  <!-- Menú móvil -->
+  <div id="mobile-menu" class="hidden border-t border-white/5 bg-forged/95 backdrop-blur-xl lg:hidden">
+    <nav class="mx-auto max-w-7xl px-6 py-6" aria-label="Móvil">
+      <ul class="flex flex-col gap-1">
+        {
+          nav.map((item, i) => (
+            <li>
+              <a
+                href={item.href}
+                class:list={[
+                  'flex items-center justify-between border-b border-white/5 py-4 font-serif text-2xl transition-colors',
+                  pathname === item.href ? 'text-copper' : 'text-coldwhite hover:text-copper',
+                ]}
+              >
+                <span>
+                  <span class="mr-3 font-mono text-xs text-steelgrey">0{i + 1}</span>{item.label}
+                </span>
+                <Icon name="arrowRight" size={18} />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a
+        href="/contacto"
+        class="mt-6 flex w-full items-center justify-center gap-2 bg-copper px-6 py-4 font-mono text-[13px] tracking-[0.2em] text-forged uppercase"
+      >
+        {hero.cta}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  const navBar = document.getElementById('nav-bar');
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  const onScroll = () => {
+    if (window.scrollY > 40) {
+      navBar.classList.remove('border-transparent');
+      navBar.classList.add('border-white/5', 'bg-forged/85', 'backdrop-blur-xl');
+    } else {
+      navBar.classList.add('border-transparent');
+      navBar.classList.remove('border-white/5', 'bg-forged/85', 'backdrop-blur-xl');
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !menu.classList.contains('hidden');
+    menu.classList.toggle('hidden');
+    iconOpen?.classList.toggle('hidden', isOpen);
+    iconClose?.classList.toggle('hidden', !isOpen);
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  // Cerrar menú al navegar
+  menu?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+    menu.classList.add('hidden');
+    iconOpen?.classList.remove('hidden');
+    iconClose?.classList.add('hidden');
+  }));
+</script>

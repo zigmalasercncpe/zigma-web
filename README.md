@@ -1,23 +1,35 @@
-# Zigma Laser - Sitio Web
+# ZIGTEC - Web CNC
 
-Sitio web de **Zigma Laser** (corte láser, grabado y diseño CNC).
+Sitio web de **ZIGTEC**: venta de maquinas CNC, mantenimiento, reparacion y capacitacion.
+
+Construido con **Astro + Tailwind CSS v4** (estatico, sin servidor).
 
 ## Estructura
 
-- `index.html` - Página principal
-- `css/style.css` - Estilos
-- `js/main.js` - Interactividad
-- `images/` - Logos e imágenes
+- `src/pages/` - Paginas del sitio (index, servicios, productos, cursos, mantenimiento, contacto)
+- `src/components/` - Componentes reutilizables (Header, Footer, ContactForm, grids...)
+- `src/layouts/Layout.astro` - Layout base (head, fuentes, SEO)
+- `src/styles/global.css` - Design tokens y utilidades de Tailwind v4
+- `src/data/content.js` - **Todo el contenido editable** (telefonos, servicios, precios...)
+- `public/images/` - Imagenes SVG de maquinas, favicon y logo
 
-## Publicar cambios en línea (GitHub + Netlify/Vercel)
+## Comandos
+
+| Comando        | Accion                               |
+| :------------- | :----------------------------------- |
+| `npm install` | Instala dependencias                 |
+| `npm run dev` | Servidor local con hot-reload        |
+| `npm run build` | Genera el sitio estatico en `dist/` |
+| `npm run preview` | Previsualiza el build localmente   |
+
+## Como editar
+
+Casi todo el contenido se cambia en `src/data/content.js` (telefonos, whatsapp, email, direccion, productos, cursos, planes de mantenimiento...).
+
+## Publicar cambios en linea
 
 1. `git add .`
-2. `git commit -m "Descripción del cambio"`
+2. `git commit -m "Descripcion del cambio"`
 3. `git push origin main`
 
-La web se actualiza automáticamente en 1-2 minutos.
-
-## Pendiente (pasos 2 y 3)
-
-- Sistema de citas (Supabase)
-- Tienda con pagos (Mercado Pago / Stripe)
+La web se actualiza automaticamente en 1-2 minutos.

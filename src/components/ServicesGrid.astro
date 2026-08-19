@@ -1,0 +1,44 @@
+﻿---
+import { services } from '../data/content.js';
+import Icon from './Icon.astro';
+import SectionTitle from './SectionTitle.astro';
+---
+
+<section class="relative py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-6">
+    <SectionTitle
+      eyebrow="Qué hacemos"
+      title="Cuatro pilares de ingeniería, un solo estándar de precisión"
+      description="Cubrimos todo el ciclo de vida de su maquinaria CNC: desde la compra del equipo correcto hasta su operación, mantenimiento y la capacitación de su equipo."
+    />
+
+    <div class="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
+      {
+        services.map((s) => (
+          <a href={s.link} class="reveal group relative overflow-hidden border border-white/5 bg-gunmetal/40 p-8 transition-all duration-500 hover:border-copper/40 hover:bg-gunmetal md:p-10">
+            <span class="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-copper/0 blur-3xl transition-all duration-500 group-hover:bg-copper/15"></span>
+            <div class="relative">
+              <div class="flex items-start justify-between">
+                <span class="flex h-14 w-14 items-center justify-center border border-copper/30 text-copper transition-all duration-500 group-hover:bg-copper group-hover:text-forged">
+                  <Icon name={s.icon} size={26} />
+                </span>
+                <span class="font-mono text-[11px] tracking-[0.3em] text-steelgrey/50 uppercase">0{services.indexOf(s) + 1}</span>
+              </div>
+              <h3 class="mt-8 font-serif text-2xl font-semibold text-coldwhite md:text-[28px]">{s.title}</h3>
+              <p class="mt-4 text-sm leading-relaxed text-steelgrey md:text-[15px]">{s.description}</p>
+              <ul class="mt-6 flex flex-wrap gap-2">
+                {s.specs.map((spec) => (
+                  <li class="border border-white/10 px-3 py-1 font-mono text-[11px] tracking-wider text-steelgrey">{spec}</li>
+                ))}
+              </ul>
+              <span class="mt-8 inline-flex items-center gap-2 font-mono text-[12px] tracking-[0.2em] text-copper uppercase">
+                Conocer más
+                <Icon name="arrowRight" size={14} class="transition-transform duration-300 group-hover:translate-x-1.5" />
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

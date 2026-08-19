@@ -1,0 +1,85 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import MaintenancePlans from '../components/MaintenancePlans.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Layout title="Mantenimiento de Máquinas CNC">
+  <PageHeader
+    eyebrow="Mantenimiento"
+    title="Proteja la inversión en su maquinaria"
+    description="Planes preventivos, predictivos y correctivos con ingenieros certificados. Reduzca downtime hasta en un 70% y alargue la vida útil de sus equipos."
+  />
+
+  <section class="border-b border-white/5 py-16">
+    <div class="mx-auto grid max-w-7xl grid-cols-2 gap-px overflow-hidden border border-white/5 bg-white/5 md:grid-cols-4">
+      <div class="bg-forged p-6 text-center">
+        <p class="font-mono text-3xl font-medium text-copper">-70%</p>
+        <p class="mt-2 text-[12px] uppercase tracking-wider text-steelgrey">Downtime</p>
+      </div>
+      <div class="bg-forged p-6 text-center">
+        <p class="font-mono text-3xl font-medium text-copper">24h</p>
+        <p class="mt-2 text-[12px] uppercase tracking-wider text-steelgrey">Respuesta garantizada</p>
+      </div>
+      <div class="bg-forged p-6 text-center">
+        <p class="font-mono text-3xl font-medium text-copper">100%</p>
+        <p class="mt-2 text-[12px] uppercase tracking-wider text-steelgrey">Refacciones originales</p>
+      </div>
+      <div class="bg-forged p-6 text-center">
+        <p class="font-mono text-3xl font-medium text-copper">3×</p>
+        <p class="mt-2 text-[12px] uppercase tracking-wider text-steelgrey">Mayor vida útil</p>
+      </div>
+    </div>
+  </section>
+
+  <MaintenancePlans />
+
+  <section class="border-t border-white/5 bg-gunmetal/20 py-24 md:py-32">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-coldwhite md:text-4xl">¿Qué incluye una visita técnica?</h2>
+          <ol class="mt-8 space-y-6">
+            {['Diagnóstico y medición de ejes (backlash y juego)', 'Verificación de nivelación y alineación', 'Inspección de lubricación, hidráulica y neumática', 'Prueba de precisión y reporte con plan de acción'].map((f, i) => (
+              <li class="flex gap-4">
+                <span class="flex h-10 w-10 shrink-0 items-center justify-center border border-copper/40 font-mono text-copper">{String(i + 1).padStart(2, '0')}</span>
+                <p class="pt-2 text-coldwhite">{f}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div class="relative overflow-hidden border border-white/5 bg-gunmetal/40 p-10">
+          <div class="absolute inset-0 bg-grid opacity-50"></div>
+          <div class="relative">
+            <span class="font-mono text-[11px] tracking-[0.3em] text-steelgrey uppercase">Emergencias</span>
+            <p class="mt-4 font-serif text-3xl font-semibold leading-snug text-coldwhite md:text-4xl">¿Paró la línea de producción?</p>
+            <p class="mt-4 text-sm leading-relaxed text-steelgrey">Atención de urgencia con diagnóstico en 24 horas y prioridad en el despacho de refacciones. Coordinamos la reparación para devolverle la máquina lo antes posible.</p>
+            <div class="mt-8 flex items-center gap-4 border border-copper/30 bg-copper/5 p-5">
+              <Icon name="phone" size={20} class="shrink-0 text-copper" />
+              <div>
+                <p class="font-mono text-[11px] tracking-[0.2em] text-steelgrey uppercase">Línea de emergencia</p>
+                <p class="font-mono text-lg text-coldwhite">+51 999 999 999</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactForm />
+</Layout>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+</script>

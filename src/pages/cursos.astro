@@ -1,0 +1,82 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import CoursesGrid from '../components/CoursesGrid.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Layout title="Cursos y Capacitación CNC">
+  <PageHeader
+    eyebrow="Capacitación"
+    title="Aprenda CNC en máquina real"
+    description="Cursos prácticos e intensivos con cupos reducidos. Operación, programación G-Code y mecanizado multi-eje con certificación al finalizar."
+  />
+
+  <section class="border-b border-white/5 py-16">
+    <div class="mx-auto grid max-w-7xl grid-cols-2 gap-px overflow-hidden border border-white/5 bg-white/5 md:grid-cols-4">
+      <div class="bg-forged p-6 text-center">
+        <p class="font-mono text-3xl font-medium text-copper">90%</p>
+        <p class="mt-2 text-[12px] uppercase tracking-wider text-steelgrey">Práctica en máquina</p>
+      </div>
+      <div class="bg-forged p-6 text-center">
+        <p class="font-mono text-3xl font-medium text-copper">1:4</p>
+        <p class="mt-2 text-[12px] uppercase tracking-wider text-steelgrey">Instructor por alumno</p>
+      </div>
+      <div class="bg-forged p-6 text-center">
+        <p class="font-mono text-3xl font-medium text-copper">300+</p>
+        <p class="mt-2 text-[12px] uppercase tracking-wider text-steelgrey">Operadores formados</p>
+      </div>
+      <div class="bg-forged p-6 text-center">
+        <p class="font-mono text-3xl font-medium text-copper">FANUC</p>
+        <p class="mt-2 text-[12px] uppercase tracking-wider text-steelgrey">Certificación oficial</p>
+      </div>
+    </div>
+  </section>
+
+  <CoursesGrid />
+
+  <section class="border-t border-white/5 bg-gunmetal/20 py-24 md:py-32">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+        <div>
+          <h2 class="font-serif text-3xl font-semibold text-coldwhite md:text-4xl">¿Por qué capacitar a su equipo?</h2>
+          <p class="mt-5 leading-relaxed text-steelgrey">Una máquina CNC vale lo que su operador sabe hacer con ella. Un equipo bien capacitado reduce desperdicio, tiempos muertos y accidentes, y multiplica la vida útil de la inversión.</p>
+          <ul class="mt-8 space-y-4">
+            {['Hasta 30% menos scrap en las primeras semanas', 'Programas optimizados con ciclos fijos y CAM', 'Menor riesgo de colisiones y daños al equipo', 'Certificación que respalda la competencia del personal'].map((f) => (
+              <li class="flex items-start gap-3 text-coldwhite">
+                <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center border border-copper/40 text-copper"><Icon name="check" size={13} /></span>
+                {f}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="relative overflow-hidden border border-white/5 bg-gunmetal/40 p-10">
+          <div class="absolute inset-0 bg-grid opacity-50"></div>
+          <div class="relative">
+            <span class="font-mono text-[11px] tracking-[0.3em] text-steelgrey uppercase">Para empresas</span>
+            <p class="mt-4 font-serif text-3xl font-semibold leading-snug text-coldwhite md:text-4xl">Capacitación in-company: llevamos el curso a su planta.</p>
+            <p class="mt-4 text-sm leading-relaxed text-steelgrey">Entrenamos a su equipo en sus propias máquinas y con sus piezas reales. Grupos desde 4 personas, con evaluación y certificado final.</p>
+            <a href="/contacto" class="mt-8 inline-flex items-center gap-2 border border-copper/40 px-6 py-3 font-mono text-[12px] tracking-[0.2em] text-copper uppercase transition-all hover:bg-copper hover:text-forged">
+              Cotizar programa <Icon name="arrowRight" size={14} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ContactForm />
+</Layout>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+</script>

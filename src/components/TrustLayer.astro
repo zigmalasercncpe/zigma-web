@@ -1,0 +1,48 @@
+﻿---
+import { certifications, testimonials, clientLogos } from '../data/content.js';
+import Icon from './Icon.astro';
+import SectionTitle from './SectionTitle.astro';
+---
+
+<section class="relative py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-6">
+    <!-- Certificaciones -->
+    <div class="reveal flex flex-wrap items-center justify-center gap-x-10 gap-y-6 border border-white/5 bg-gunmetal/30 px-8 py-10">
+      {
+        certifications.map((c) => (
+          <span class="flex items-center gap-3 font-mono text-[13px] tracking-[0.15em] text-steelgrey">
+            <Icon name="badge" size={20} class="text-copper" /> {c}
+          </span>
+        ))
+      }
+    </div>
+
+    <!-- Testimonios -->
+    <div class="mt-24">
+      <SectionTitle eyebrow="Clientes" title="Quienes confían en nuestra precisión" align="center" />
+      <div class="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
+        {
+          testimonials.map((t) => (
+            <figure class="reveal relative border border-white/5 bg-gunmetal/40 p-8 md:p-10">
+              <span class="absolute right-8 top-6 font-serif text-[80px] leading-none text-copper/20">"</span>
+              <blockquote class="relative font-serif text-xl leading-relaxed text-coldwhite md:text-2xl">{t.quote}</blockquote>
+              <figcaption class="mt-8 border-t border-white/5 pt-5">
+                <p class="font-sans text-sm font-semibold tracking-wide text-copper">{t.name}</p>
+                <p class="mt-1 font-mono text-[12px] text-steelgrey">{t.role}</p>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+
+    <!-- Logos de clientes -->
+    <div class="mt-24 overflow-hidden border-y border-white/5 py-8">
+      <div class="flex w-max animate-marquee gap-16">
+        {[...clientLogos, ...clientLogos].map((logo) => (
+          <span class="whitespace-nowrap font-serif text-xl tracking-[0.15em] text-steelgrey/60 uppercase">{logo}</span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

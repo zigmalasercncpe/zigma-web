@@ -1,0 +1,81 @@
+﻿---
+import { hero, site } from '../data/content.js';
+import Icon from './Icon.astro';
+import Blueprint from './Blueprint.astro';
+---
+
+<section class="relative flex min-h-screen items-center overflow-hidden pt-28 pb-16 md:pt-32">
+  <!-- Fondo: grid + viñeta -->
+  <div class="absolute inset-0 bg-grid"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#141618_78%)]"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-forged/60 via-transparent to-forged"></div>
+
+  <!-- Plano técnico de fondo (móvil, muy sutil) -->
+  <div class="absolute inset-0 opacity-15 lg:hidden">
+    <Blueprint />
+  </div>
+
+  <div class="relative z-10 mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2">
+    <!-- Columna de contenido -->
+    <div class="reveal">
+      <span class="inline-flex items-center gap-3 border border-white/10 bg-gunmetal/60 px-4 py-2 font-mono text-[11px] tracking-[0.3em] text-steelgrey uppercase">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-copper opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-copper"></span>
+        </span>
+        {hero.badge}
+      </span>
+
+      <h1 class="mt-8 font-serif text-5xl font-semibold leading-[1.05] text-coldwhite sm:text-6xl xl:text-7xl">
+        {hero.title} <span class="text-copper-gradient italic">{hero.titleHighlight}</span><br />
+        <span class="text-steelgrey">{hero.titleEnd}</span>
+      </h1>
+
+      <p class="mt-6 max-w-xl text-base leading-relaxed text-steelgrey md:text-lg">
+        Especialistas en máquinas CNC: <span class="text-coldwhite">venta, instalación, mantenimiento y capacitación</span> con ingeniería de precisión y respuesta garantizada en 24 horas.
+      </p>
+
+      <!-- Coordenadas técnicas -->
+      <div class="mt-8 inline-flex items-center gap-4 border border-white/5 bg-gunmetal/40 px-4 py-2 font-mono text-[12px] text-steelgrey">
+        <span class="flex items-center gap-1 text-copper"><Icon name="target" size={13} /> {hero.coordinates}</span>
+      </div>
+
+      <div class="mt-10 flex flex-wrap items-center gap-4">
+        <a href="/contacto" class="group inline-flex items-center gap-3 border border-copper bg-copper/10 px-8 py-4 font-mono text-[13px] tracking-[0.2em] text-coldwhite uppercase transition-all duration-300 hover:bg-copper hover:text-forged">
+          {hero.cta}
+          <Icon name="arrowRight" size={16} class="transition-transform duration-300 group-hover:translate-x-1.5" />
+        </a>
+        <a href="/productos" class="inline-flex items-center gap-3 px-6 py-4 font-mono text-[13px] tracking-[0.2em] text-steelgrey uppercase transition-colors duration-300 hover:text-copper">
+          <span class="h-px w-8 bg-steelgrey/50"></span> {hero.secondary}
+        </a>
+      </div>
+    </div>
+
+    <!-- Plano técnico animado (escritorio) -->
+    <div class="relative hidden lg:block">
+      <div class="animate-float-slow">
+        <Blueprint />
+      </div>
+      <!-- Marco técnico -->
+      <div class="absolute -left-4 -top-4 h-16 w-16 border-l border-t border-copper/40"></div>
+      <div class="absolute -bottom-4 -right-4 h-16 w-16 border-b border-r border-copper/40"></div>
+    </div>
+  </div>
+
+  <!-- Indicador de scroll -->
+  <div class="absolute bottom-8 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex">
+    <span class="font-mono text-[10px] tracking-[0.4em] text-steelgrey uppercase">Scroll</span>
+    <Icon name="chevronDown" size={18} class="animate-bounce text-copper" />
+  </div>
+</section>
+
+<slot />
+
+<script>
+  // Reveal inicial del hero
+  requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal').forEach((el) => el.classList.add('is-visible'));
+  });
+</script>
+
+

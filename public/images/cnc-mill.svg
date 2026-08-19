@@ -1,0 +1,25 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#131519"/>
+  <defs>
+    <pattern id="grid3" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#1d2126" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#grid3)"/>
+  <rect x="1" y="1" width="798" height="598" fill="none" stroke="#B87333" stroke-width="2"/>
+  <text x="40" y="48" font-family="monospace" font-size="18" fill="#8A9099">ZT-VM 850 — CENTRO VERTICAL 3 EJES</text>
+  <g stroke="#F0F2F4" stroke-width="2" fill="none" opacity="0.9">
+    <rect x="220" y="120" width="120" height="320" rx="6"/>
+    <rect x="340" y="200" width="60" height="140" rx="4"/>
+    <rect x="340" y="440" width="420" height="30" rx="4"/>
+    <rect x="340" y="300" width="420" height="140" rx="6"/>
+    <line x1="520" y1="300" x2="520" y2="440"/>
+    <line x1="660" y1="300" x2="660" y2="440"/>
+    <line x1="400" y1="300" x2="400" y2="440"/>
+  </g>
+  <g stroke="#B87333" stroke-width="2" fill="none">
+    <path d="M300 470 L300 520 M640 470 L640 520 M260 520 L680 520"/>
+    <path d="M220 120 L160 80 L160 40 M340 200 L380 160 L380 40"/>
+  </g>
+  <text x="40" y="572" font-family="monospace" font-size="14" fill="#B87333">SCALE 1:12 · TRAVEL 850×520 · TOOLS 24 · FANUC 0i-MF</text>
+</svg>

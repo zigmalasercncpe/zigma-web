@@ -1,0 +1,86 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import ProcessTimeline from '../components/ProcessTimeline.astro';
+import ContactForm from '../components/ContactForm.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Layout title="Servicios de Ingeniería CNC">
+  <PageHeader
+    eyebrow="Servicios"
+    title="Ingeniería CNC de principio a fin"
+    description="Diagnóstico, venta, instalación, mantenimiento y capacitación. Un solo equipo técnico para todo el ciclo de vida de su maquinaria."
+  />
+
+  <section class="border-b border-white/5 py-16">
+    <div class="mx-auto grid max-w-7xl grid-cols-2 gap-px overflow-hidden border border-white/5 bg-white/5 md:grid-cols-4">
+      <div class="bg-forged p-6 text-center">
+        <p class="font-mono text-3xl font-medium text-copper">01</p>
+        <p class="mt-2 text-[12px] uppercase tracking-wider text-steelgrey">Diagnóstico</p>
+      </div>
+      <div class="bg-forged p-6 text-center">
+        <p class="font-mono text-3xl font-medium text-copper">02</p>
+        <p class="mt-2 text-[12px] uppercase tracking-wider text-steelgrey">Propuesta</p>
+      </div>
+      <div class="bg-forged p-6 text-center">
+        <p class="font-mono text-3xl font-medium text-copper">03</p>
+        <p class="mt-2 text-[12px] uppercase tracking-wider text-steelgrey">Ejecución</p>
+      </div>
+      <div class="bg-forged p-6 text-center">
+        <p class="font-mono text-3xl font-medium text-copper">04</p>
+        <p class="mt-2 text-[12px] uppercase tracking-wider text-steelgrey">Soporte</p>
+      </div>
+    </div>
+  </section>
+
+  <ServicesGrid />
+
+  <section class="border-t border-white/5 py-24 md:py-32">
+    <div class="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2">
+      <div>
+        <h2 class="font-serif text-3xl font-semibold text-coldwhite md:text-4xl">Un solo interlocutor técnico, de principio a fin</h2>
+        <p class="mt-5 leading-relaxed text-steelgrey">No pierda tiempo coordinando entre proveedores. En ZIGTEC el mismo ingeniero que diagnostica, ejecuta y da seguimiento. Eso garantiza consistencia, trazabilidad y menos errores.</p>
+        <ul class="mt-8 space-y-4">
+          {['Respuesta en menos de 24 horas', 'Técnicos certificados FANUC y Siemens', 'Garantía escrita en cada servicio', 'Reportes técnicos detallados'].map((f) => (
+            <li class="flex items-start gap-3 text-coldwhite">
+              <span class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center border border-copper/40 text-copper"><Icon name="check" size={13} /></span>
+              {f}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="relative overflow-hidden border border-white/5 bg-gunmetal/40 p-10">
+        <div class="absolute inset-0 bg-grid opacity-50"></div>
+        <div class="relative">
+          <span class="font-mono text-[11px] tracking-[0.3em] text-steelgrey uppercase">Garantía ZIGTEC</span>
+          <p class="mt-4 font-serif text-3xl font-semibold leading-snug text-coldwhite md:text-4xl">Todo servicio incluye <span class="text-copper-gradient italic">seguimiento post-entrega</span> durante 90 días.</p>
+          <div class="mt-10 space-y-3 font-mono text-[12px] text-steelgrey">
+            <p class="flex justify-between border-b border-white/5 pb-2"><span>Diagnóstico</span><span class="text-copper">24 h</span></p>
+            <p class="flex justify-between border-b border-white/5 pb-2"><span>Cotización</span><span class="text-copper">24–48 h</span></p>
+            <p class="flex justify-between border-b border-white/5 pb-2"><span>Instalación</span><span class="text-copper">Llave en mano</span></p>
+            <p class="flex justify-between"><span>Soporte</span><span class="text-copper">90 días</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <ProcessTimeline />
+  <ContactForm />
+  <CtaBanner />
+</Layout>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+</script>

@@ -1,0 +1,55 @@
+﻿---
+import { products } from '../data/content.js';
+import Icon from './Icon.astro';
+import SectionTitle from './SectionTitle.astro';
+---
+
+<section class="relative py-24 md:py-32">
+  <div class="pointer-events-none absolute inset-0 bg-grid opacity-60"></div>
+  <div class="relative mx-auto max-w-7xl px-6">
+    <div class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+      <SectionTitle
+        eyebrow="Máquinas"
+        title="Equipos que trabajan al milímetro, todos los días"
+        description="Centros de mecanizado, tornos y mesas de corte. Cada equipo pasa por verificación dimensional y pruebas de fiabilidad antes de la entrega."
+      />
+      <a href="/productos" class="group inline-flex shrink-0 items-center gap-2 border border-white/10 px-6 py-3 font-mono text-[12px] tracking-[0.2em] text-steelgrey uppercase transition-all duration-300 hover:border-copper hover:text-copper">
+        Ver catálogo completo
+        <Icon name="arrowRight" size={14} class="transition-transform duration-300 group-hover:translate-x-1.5" />
+      </a>
+    </div>
+
+    <div class="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        products.map((p, i) => (
+          <article class={`reveal group relative overflow-hidden border border-white/5 bg-gunmetal/40 ${i === 0 ? 'sm:col-span-2 sm:row-span-2' : ''}`}>
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img
+                src={p.image}
+                alt={p.name}
+                loading="lazy"
+                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-forged via-forged/30 to-transparent"></div>
+              <span class="absolute left-4 top-4 border border-white/10 bg-forged/70 px-3 py-1 font-mono text-[10px] tracking-[0.25em] text-copper uppercase backdrop-blur">
+                {p.category}
+              </span>
+              <span class="absolute right-4 top-4 font-mono text-[11px] text-coldwhite/60">{p.model}</span>
+            </div>
+            <div class="p-6">
+              <h3 class="font-serif text-xl font-semibold text-coldwhite">{p.name}</h3>
+              <ul class="mt-4 grid grid-cols-2 gap-x-4 gap-y-2">
+                {p.specs.map((sp) => (
+                  <li class="flex items-start gap-2 text-[12px] text-steelgrey">
+                    <Icon name="check" size={12} class="mt-0.5 shrink-0 text-copper" />
+                    {sp}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,174 @@
+﻿---
+import { site, contactInfo } from '../data/content.js';
+import Icon from './Icon.astro';
+const serviceOptions = ['Venta de maquinas CNC', 'Servicio tecnico / reparacion', 'Mantenimiento preventivo', 'Capacitacion / cursos', 'Cotizacion de pieza mecanizada', 'Otro'];
+---
+
+<section id="contacto" class="relative py-24 md:py-32">
+  <div class="mx-auto max-w-7xl px-6">
+    <div class="grid grid-cols-1 gap-14 lg:grid-cols-5">
+      <div class="lg:col-span-2">
+        <span class="inline-flex items-center gap-3 font-mono text-[12px] tracking-[0.3em] text-copper uppercase">
+          <span class="h-px w-8 bg-copper/60"></span> Cotizacion
+        </span>
+        <h2 class="mt-5 font-serif text-4xl font-semibold leading-tight text-coldwhite md:text-5xl">
+          Cotizacion precisa.
+          <span class="text-copper-gradient italic">Respuesta en 24h.</span>
+        </h2>
+        <p class="mt-6 max-w-md text-base leading-relaxed text-steelgrey">
+          {contactInfo.formTitle}. Elija el canal de contacto que prefiera: por WhatsApp le respondemos al instante, o envienos los detalles por email.
+        </p>
+
+        <div class="mt-10 space-y-5">
+          <a href={`https://wa.me/${site.whatsapp}`} target="_blank" rel="noopener" class="group flex items-center gap-4 border border-white/5 bg-gunmetal/40 p-5 transition-all duration-300 hover:border-copper/40">
+            <span class="flex h-12 w-12 items-center justify-center bg-copper/15 text-copper transition-colors group-hover:bg-copper group-hover:text-forged"><Icon name="whatsapp" size={22} /></span>
+            <span>
+              <span class="block font-mono text-[11px] tracking-[0.2em] text-steelgrey uppercase">WhatsApp directo</span>
+              <span class="text-coldwhite">{site.phoneDisplay}</span>
+            </span>
+          </a>
+          <a href={`mailto:${site.email}`} class="group flex items-center gap-4 border border-white/5 bg-gunmetal/40 p-5 transition-all duration-300 hover:border-copper/40">
+            <span class="flex h-12 w-12 items-center justify-center bg-copper/15 text-copper transition-colors group-hover:bg-copper group-hover:text-forged"><Icon name="mail" size={22} /></span>
+            <span>
+              <span class="block font-mono text-[11px] tracking-[0.2em] text-steelgrey uppercase">Email</span>
+              <span class="text-coldwhite">{site.email}</span>
+            </span>
+          </a>
+          <div class="flex items-start gap-4 border border-white/5 bg-gunmetal/40 p-5">
+            <span class="flex h-12 w-12 shrink-0 items-center justify-center bg-copper/15 text-copper"><Icon name="mapPin" size={22} /></span>
+            <span>
+              <span class="block font-mono text-[11px] tracking-[0.2em] text-steelgrey uppercase">Visitenos</span>
+              <span class="text-coldwhite">{site.address}</span>
+              <span class="mt-1 block font-mono text-[12px] text-steelgrey">{site.hours}</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3">
+        <form id="rfq-form" class="relative border border-white/5 bg-gunmetal/40 p-8 md:p-10">
+          <span class="absolute -top-px left-10 h-px w-24 bg-copper"></span>
+
+          <p class="font-mono text-[12px] tracking-[0.25em] text-coldwhite uppercase">Como prefieres ser contactado?</p>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <label class="group cursor-pointer border border-white/10 p-4 transition-all has-checked:border-copper has-checked:bg-copper/10">
+              <input type="radio" name="channel" value="whatsapp" checked class="peer sr-only" />
+              <span class="flex items-center gap-3">
+                <span class="flex h-10 w-10 items-center justify-center border border-white/10 text-steelgrey transition-colors group-has-checked:bg-copper group-has-checked:text-forged"><Icon name="whatsapp" size={18} /></span>
+                <span class="font-mono text-[12px] tracking-wider text-steelgrey uppercase">WhatsApp</span>
+              </span>
+            </label>
+            <label class="group cursor-pointer border border-white/10 p-4 transition-all has-checked:border-copper has-checked:bg-copper/10">
+              <input type="radio" name="channel" value="email" class="peer sr-only" />
+              <span class="flex items-center gap-3">
+                <span class="flex h-10 w-10 items-center justify-center border border-white/10 text-steelgrey transition-colors group-has-checked:bg-copper group-has-checked:text-forged"><Icon name="mail" size={18} /></span>
+                <span class="font-mono text-[12px] tracking-wider text-steelgrey uppercase">Email</span>
+              </span>
+            </label>
+          </div>
+
+          <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div>
+              <label for="name" class="mb-2 block font-mono text-[11px] tracking-[0.2em] text-steelgrey uppercase">Nombre completo *</label>
+              <input id="name" name="name" type="text" required placeholder="Juan Perez"
+                class="w-full border border-white/10 bg-forged/60 px-4 py-3 text-sm text-coldwhite placeholder:text-steelgrey/40 outline-none transition-colors focus:border-copper" />
+            </div>
+            <div>
+              <label for="company" class="mb-2 block font-mono text-[11px] tracking-[0.2em] text-steelgrey uppercase">Empresa</label>
+              <input id="company" name="company" type="text" placeholder="Metalmecanica XYZ"
+                class="w-full border border-white/10 bg-forged/60 px-4 py-3 text-sm text-coldwhite placeholder:text-steelgrey/40 outline-none transition-colors focus:border-copper" />
+            </div>
+            <div>
+              <label for="phone" class="mb-2 block font-mono text-[11px] tracking-[0.2em] text-steelgrey uppercase">Telefono / WhatsApp *</label>
+              <input id="phone" name="phone" type="tel" required placeholder="+51 999 999 999"
+                class="w-full border border-white/10 bg-forged/60 px-4 py-3 text-sm text-coldwhite placeholder:text-steelgrey/40 outline-none transition-colors focus:border-copper" />
+            </div>
+            <div>
+              <label for="service" class="mb-2 block font-mono text-[11px] tracking-[0.2em] text-steelgrey uppercase">Servicio requerido *</label>
+              <select id="service" name="service" required
+                class="w-full border border-white/10 bg-forged/60 px-4 py-3 text-sm text-coldwhite outline-none transition-colors focus:border-copper [&>option]:bg-forged">
+                {serviceOptions.map((o) => <option value={o}>{o}</option>)}
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <label for="message" class="mb-2 block font-mono text-[11px] tracking-[0.2em] text-steelgrey uppercase">Detalles del requerimiento *</label>
+            <textarea id="message" name="message" rows="4" required placeholder="Material, cantidades, tolerancias requeridas..."
+              class="w-full resize-none border border-white/10 bg-forged/60 px-4 py-3 text-sm text-coldwhite placeholder:text-steelgrey/40 outline-none transition-colors focus:border-copper"></textarea>
+          </div>
+
+          <div class="mt-6">
+            <p class="mb-2 font-mono text-[11px] tracking-[0.2em] text-steelgrey uppercase">Adjuntar plano (opcional)</p>
+            <label id="upload-zone" for="file" class="flex cursor-pointer flex-col items-center justify-center gap-2 border border-dashed border-white/15 bg-forged/40 px-6 py-8 text-center transition-colors hover:border-copper/50">
+              <Icon name="upload" size={24} class="text-copper" />
+              <span id="upload-text" class="font-mono text-[12px] text-steelgrey">{contactInfo.uploadHint}</span>
+              <span id="upload-name" class="hidden font-mono text-[12px] text-copper"></span>
+              <input id="file" name="file" type="file" accept=".dxf,.dwg,.pdf,.step,.stp,.iges,.igs" class="hidden" />
+            </label>
+          </div>
+
+          <button type="submit" id="rfq-submit"
+            class="group mt-8 flex w-full items-center justify-center gap-3 bg-copper px-8 py-4 font-mono text-[13px] tracking-[0.25em] text-forged uppercase transition-all duration-300 hover:bg-engorange">
+            {contactInfo.whatsappCta}
+            <Icon name="send" size={16} class="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+          </button>
+          <p class="mt-4 text-center font-mono text-[11px] text-steelgrey/60">Sus datos son confidenciales. Respondemos dentro de 24 horas habiles.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ whatsapp: site.whatsapp, email: site.email }}>
+  const form = document.getElementById('rfq-form');
+  const submitBtn = document.getElementById('rfq-submit');
+  const fileInput = document.getElementById('file');
+  const uploadName = document.getElementById('upload-name');
+  const uploadText = document.getElementById('upload-text');
+
+  fileInput?.addEventListener('change', () => {
+    if (fileInput.files.length > 0) {
+      uploadText.classList.add('hidden');
+      uploadName.textContent = fileInput.files[0].name;
+      uploadName.classList.remove('hidden');
+    } else {
+      uploadText.classList.remove('hidden');
+      uploadName.classList.add('hidden');
+    }
+  });
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const channel = new FormData(form).get('channel');
+    const data = new FormData(form);
+    const msg = [
+      'Nueva cotizacion - ZIGTEC',
+      'Nombre: ' + data.get('name'),
+      'Empresa: ' + (data.get('company') || '-'),
+      'Telefono: ' + data.get('phone'),
+      'Servicio: ' + data.get('service'),
+      'Detalles: ' + data.get('message'),
+      data.get('file') ? 'Plano: ' + data.get('file').name : '',
+    ].filter(Boolean).join(String.fromCharCode(10));
+
+    if (channel === 'whatsapp') {
+      const number = whatsapp;
+      const url = 'https://wa.me/' + number + '?text=' + encodeURIComponent(msg);
+      window.open(url, '_blank');
+    } else {
+      const mailto = 'mailto:' + email + '?subject=' + encodeURIComponent('Cotizacion - ' + data.get('service')) + '&body=' + encodeURIComponent(msg);
+      window.location.href = mailto;
+    }
+    submitBtn.textContent = 'ENVIADO';
+    submitBtn.classList.add('bg-green-700');
+    setTimeout(() => {
+      submitBtn.textContent = 'ENVIAR';
+      submitBtn.classList.remove('bg-green-700');
+      form.reset();
+      uploadText.classList.remove('hidden');
+      uploadName.classList.add('hidden');
+    }, 4000);
+  });
+</script>
+

@@ -1,0 +1,51 @@
+---
+// Cursor crosshair con efecto magnético sobre enlaces y botones.
+// Se desactiva automáticamente en táctiles (media query).
+---
+
+<div id="cursor-dot" class="pointer-events-none fixed left-0 top-0 z-[90] hidden h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-copper lg:block"></div>
+<div id="cursor-ring" class="pointer-events-none fixed left-0 top-0 z-[90] hidden h-8 w-8 -translate-x-1/2 -translate-y-1/2 border border-copper/60 lg:block"></div>
+
+<script>
+  function initCursor() {
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    if (!dot || !ring || !window.matchMedia('(pointer: fine)').matches) return;
+
+    let mx = innerWidth / 2;
+    let my = innerHeight / 2;
+    let rx = mx;
+    let ry = my;
+    let scale = 1;
+
+    addEventListener('mousemove', (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+      dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+    });
+
+    const loop = () => {
+      rx += (mx - rx) * 0.16;
+      ry += (my - ry) * 0.16;
+      ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%) scale(${scale})`;
+      requestAnimationFrame(loop);
+    };
+    loop();
+
+    document.querySelectorAll('a, button, input, select, textarea, label').forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        ring.classList.add('border-copper');
+        ring.classList.add('bg-copper/10');
+        scale = 1.6;
+        dot.style.opacity = '0.4';
+      });
+      el.addEventListener('mouseleave', () => {
+        ring.classList.remove('border-copper', 'bg-copper/10');
+        scale = 1;
+        dot.style.opacity = '1';
+      });
+    });
+  }
+
+  initCursor();
+</script>

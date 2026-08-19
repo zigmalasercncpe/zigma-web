@@ -1,0 +1,41 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/Icon.astro';
+import { site } from '../data/content.js';
+---
+
+<Layout title="Contacto">
+  <PageHeader
+    eyebrow="Contacto"
+    title="Hablemos de su proyecto"
+    description="Cotización en 24 horas, diagnóstico técnico o visita a planta. Elija el canal que prefiera y le respondemos al instante."
+  />
+
+  <ContactForm />
+
+  <section class="border-t border-white/5 bg-gunmetal/20 py-24">
+    <div class="mx-auto max-w-7xl px-6">
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div class="border border-white/5 bg-forged p-8">
+          <Icon name="clock" size={22} class="text-copper" />
+          <h3 class="mt-5 font-serif text-xl font-semibold text-coldwhite">Horario de atención</h3>
+          <p class="mt-3 font-mono text-[13px] leading-relaxed text-steelgrey">{site.hours}</p>
+          <p class="mt-3 text-sm text-steelgrey">Línea de emergencia 24/7 para clientes con contrato de mantenimiento.</p>
+        </div>
+        <div class="border border-white/5 bg-forged p-8">
+          <Icon name="mapPin" size={22} class="text-copper" />
+          <h3 class="mt-5 font-serif text-xl font-semibold text-coldwhite">Nuestra ubicación</h3>
+          <p class="mt-3 font-mono text-[13px] leading-relaxed text-steelgrey">{site.address}</p>
+          <p class="mt-3 text-sm text-steelgrey">Taller de demostración: vea las máquinas en funcionamiento antes de decidir.</p>
+        </div>
+        <div class="border border-white/5 bg-forged p-8">
+          <Icon name="users" size={22} class="text-copper" />
+          <h3 class="mt-5 font-serif text-xl font-semibold text-coldwhite">¿Es cliente con contrato?</h3>
+          <p class="mt-3 text-sm leading-relaxed text-steelgrey">Acceda a nuestro portal de solicitudes de servicio con prioridad y trazabilidad completa de cada intervención.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

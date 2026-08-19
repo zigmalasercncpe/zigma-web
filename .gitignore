@@ -1,0 +1,16 @@
+﻿# Dependencies
+node_modules/
+
+# Astro build output
+dist/
+.astro/
+
+# Legacy & backups
+_legacy/
+backup-web-actual/
+respaldo de servicio de corte laser/
+zigma-web-respaldo.zip
+
+# OS
+Thumbs.db
+.DS_Store
